@@ -1,38 +1,270 @@
-.App {
+/*
+listras #F4F7FC;
+*/
+
+.table-bar {
+  background-color: #F4F7FC;
+  padding: 1rem;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+}
+
+.filter-icon {
+  margin-left: 0.5rem;
+  margin-right: 1.5rem;
+}
+
+.filter-icon:hover {
+  cursor: pointer;
+}
+
+.input-icon i { 
+  position: absolute; 
+} 
+
+.input-icon { 
+  width: 100%; 
+} 
+
+.icon { 
+  padding: 0.8rem; 
+  min-width: 1rem; 
+}
+
+.search-people-input {
+  padding: 0.8rem;
+  padding-left: 2.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  width: 15rem;
+  background-color: #DAE1EC;
+}
+
+.add-customer-button {
+  padding: 0.8rem;
+  border-radius: 0.3rem;
+  border: none;
+  margin-left: auto;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;  
+  background-color: #0A65FF;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.add-customer-button span {
+  align-self: center;
+}
+
+.add-customer-button .bi {
+  margin-right: 0.5rem;
+}
+
+.people-table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.people-table th {
+  color: #606F89;
+}
+
+.people-table th:first-child {
+  padding: 0 1rem 0 2rem;
+  width: 1rem;
+}
+
+.people-table td:first-child {
+  padding: 0 1rem 0 2rem;
+  width: 1rem;
+}
+
+.people-table thead {
+  background-color: #F4F7FC;
+}
+
+.people-table td {
+  padding: 1rem;
+}
+
+.people-table th {
+  padding: 1rem;
+}
+
+.people-table tr:nth-child(even) {
+  background-color: #F4F7FC;
+}
+
+.checkbox-header {
+  text-align: left;
+}
+
+input[type=checkbox] {
+  transform: scale(1.8);
+  display: flex;
+  margin: 0;
+}
+
+input[type=radio] {
+  transform: scale(1.8);
+  display: flex;
+  margin: 0;
+}
+
+.person-name-header {
+  text-align: left;
+}
+
+.person-height-header {
+  text-align: right;
+}
+
+.person-weight-header {
+  text-align: right;
+}
+
+.person-actions-header {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.person-name {
+  color: #2E3B52;
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.person-height {
+  text-align: right;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.person-weight {
+  text-align: right;
+}
+
+.person-lactose {
+  text-align: center;
+}
+
+.person-athlete {
+  text-align: center;
+}
+
+.person-actions {
+  text-align: center;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.person-actions span {
+  margin-right: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+span svg {
+  display: flex;
+}
+
+.status {
+  border-radius: 1rem;
+  width: 3rem;
+  margin: auto
+}
+
+.positive-status {
+  color: #FFFFFF;
+  background-color: #0A65FF;
+}
+
+.negative-status {
+  color: #6F809E;
+  border: 2px solid #6F809E;
+  background-color: #FFFFFF;
+}
+
+.bi {
+  color: #6F809E;
+}
+
+.bi-filter {
+  color: #0A65FF;
+}
+
+.bi-plus-circle {
+  color: #FFFFFF;
+  overflow: visible;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: min-content;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+.box {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 1rem;
+  gap: 0.7rem;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-actions {
+  float: right;
+}
+
+.primary-button {
+  padding: 0.8rem;
+  border-radius: 0.3rem;
+  border: none;
+  margin-left: auto;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;  
+  background-color: #0A65FF;
+  color: #FFFFFF;
+  font-weight: bold;
 }
