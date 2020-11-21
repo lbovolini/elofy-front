@@ -63,27 +63,27 @@ export default class ShowPeoplePage extends Component {
         return people.filter(person => person.lactose == condition)
     }
 
-    filterByLowWeight = (people, condition) => {
+    filterByLowWeight = (people) => {
         return people.filter(person => !(person.weight <= LOW_WEIGHT))
     }
 
-    filterByIdealWeight = (people, condition) => {
+    filterByIdealWeight = (people) => {
         return people.filter(person => !(person.weight > LOW_WEIGHT && person.weight < HIGH_WEIGHT))
     }
 
-    filterByHighWeight = (people, condition) => {
+    filterByHighWeight = (people) => {
         return people.filter(person => !(person.weight >= HIGH_WEIGHT))
     }
 
-    filterByShortHeight = (people, condition) => {
+    filterByShortHeight = (people) => {
         return people.filter(person => !(person.height <= SHORT_HEIGHT))
     }
 
-    filterByMedianHeight = (people, condition) => {
+    filterByMedianHeight = (people) => {
         return people.filter(person => !(person.height > SHORT_HEIGHT && person.height < TALL_HEIGHT))
     }
 
-    filterByTallHeight = (people, condition) => {
+    filterByTallHeight = (people) => {
         return people.filter(person => !(person.height >= TALL_HEIGHT))
     }
 
@@ -93,6 +93,30 @@ export default class ShowPeoplePage extends Component {
 
     onChangeAtheleteCheckbox = (option) => {
         this.setState({ atheleteChecked: option })
+    }
+
+    onChangeLowWeightCheckbox = () => {
+        this.setState({ lowWeightChecked: !this.state.lowWeightChecked })
+    }
+
+    onChangeIdealWeightCheckbox = () => {
+        this.setState({ idealWeightChecked: !this.state.idealWeightChecked })
+    }
+
+    onChangeHighWeightCheckbox = () => {
+        this.setState({ highWeightChecked: !this.state.highWeightChecked })
+    }
+
+    onChangeShortHeightCheckbox = () => {
+        this.setState({ shortHeightChecked: !this.state.shortHeightChecked })
+    }
+
+    onChangeMedianHeightCheckbox = () => {
+        this.setState({ medianHeightChecked: !this.state.medianHeightChecked })
+    }
+
+    onChangeTallHeightCheckbox = () => {
+        this.setState({ tallHeightChecked: !this.state.tallHeightChecked })
     }
 
     onFilter = () => {
@@ -119,13 +143,13 @@ export default class ShowPeoplePage extends Component {
         const highWeight = this.state.highWeightChecked
     
         if (!lowWeight) {
-            people = this.filterByLowWeight(people, false)
+            people = this.filterByLowWeight(people)
         }
         if (!idealWeight) {
-            people = this.filterByIdealWeight(people, false)
+            people = this.filterByIdealWeight(people)
         }
         if (!highWeight) {
-            people = this.filterByHighWeight(people, false)
+            people = this.filterByHighWeight(people)
         }
 
         const shortHeight = this.state.shortHeightChecked
@@ -133,13 +157,13 @@ export default class ShowPeoplePage extends Component {
         const tallHeight = this.state.tallHeightChecked
 
         if (!shortHeight) {
-            people = this.filterByShortHeight(people, false)
+            people = this.filterByShortHeight(people)
         }
         if (!medianHeight) {
-            people = this.filterByMedianHeight(people, false)
+            people = this.filterByMedianHeight(people)
         }
         if (!tallHeight) {
-            people = this.filterByTallHeight(people, false)
+            people = this.filterByTallHeight(people)
         }
 
         this.setState({ people: people })
@@ -160,22 +184,22 @@ export default class ShowPeoplePage extends Component {
                                 <fieldset>
                                     <legend>Peso</legend>
                                     <div className="box">
-                                        <input type="checkbox" checked={this.state.lowWeightChecked} onChange={e => this.setState({ lowWeightChecked: !this.state.lowWeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.lowWeightChecked} onChange={this.onChangeLowWeightCheckbox}/>
                                         <label htmlFor="">Abaixo</label>
-                                        <input type="checkbox" checked={this.state.idealWeightChecked} onChange={e => this.setState({ idealWeightChecked: !this.state.idealWeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.idealWeightChecked} onChange={this.onChangeIdealWeightCheckbox}/>
                                         <label htmlFor="">Ideal</label>
-                                        <input type="checkbox" checked={this.state.highWeightChecked} onChange={e => this.setState({ highWeightChecked: !this.state.highWeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.highWeightChecked} onChange={this.onChangeHighWeightCheckbox}/>
                                         <label htmlFor="">Acima</label>
                                     </div>
                                 </fieldset>
                                 <fieldset>
                                     <legend>Altura</legend>
                                     <div className="box">
-                                        <input type="checkbox" checked={this.state.shortHeightChecked} onChange={e => this.setState({ shortHeightChecked: !this.state.shortHeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.shortHeightChecked} onChange={this.onChangeShortHeightCheckbox}/>
                                         <label htmlFor="">Baixa</label>
-                                        <input type="checkbox" checked={this.state.medianHeightChecked} onChange={e => this.setState({ medianHeightChecked: !this.state.medianHeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.medianHeightChecked} onChange={this.onChangeMedianHeightCheckbox}/>
                                         <label htmlFor="">Mediana</label>
-                                        <input type="checkbox" checked={this.state.tallHeightChecked} onChange={e => this.setState({ tallHeightChecked: !this.state.tallHeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.tallHeightChecked} onChange={this.onChangeTallHeightCheckbox}/>
                                         <label htmlFor="">Alta</label>
                                     </div>
                                 </fieldset>
@@ -183,22 +207,22 @@ export default class ShowPeoplePage extends Component {
                                     <fieldset>
                                         <legend>Intolerante a lactose</legend>
                                         <div className="lactose-checkbox box">
-                                            <input type="checkbox" checked={this.state.lactoseChecked === ALL} onChange={e => this.onChangeLactoseCheckbox(ALL)}/>
+                                            <input type="checkbox" checked={this.state.lactoseChecked === ALL} onChange={this.onChangeLactoseCheckbox.bind(this, ALL)}/>
                                             <label>Todos</label>
-                                            <input type="checkbox" checked={this.state.lactoseChecked === YES} onChange={e => this.onChangeLactoseCheckbox(YES)}/>
+                                            <input type="checkbox" checked={this.state.lactoseChecked === YES} onChange={this.onChangeLactoseCheckbox.bind(this, YES)}/>
                                             <label>Sim</label>
-                                            <input type="checkbox" checked={this.state.lactoseChecked === NO} onChange={e => this.onChangeLactoseCheckbox(NO)}/>
+                                            <input type="checkbox" checked={this.state.lactoseChecked === NO} onChange={this.onChangeLactoseCheckbox.bind(this, NO)}/>
                                             <label>Não</label>
                                         </div>
                                     </fieldset>
                                     <fieldset>
                                         <legend>Atleta</legend>
                                         <div className="box">
-                                            <input type="checkbox" checked={this.state.atheleteChecked === ALL} onChange={e => this.onChangeAtheleteCheckbox(ALL)}/>
+                                            <input type="checkbox" checked={this.state.atheleteChecked === ALL} onChange={this.onChangeAtheleteCheckbox.bind(this, ALL)}/>
                                             <label>Todos</label>
-                                            <input type="checkbox" checked={this.state.atheleteChecked === YES} onChange={e => this.onChangeAtheleteCheckbox(YES)}/>
+                                            <input type="checkbox" checked={this.state.atheleteChecked === YES} onChange={this.onChangeAtheleteCheckbox.bind(this, YES)}/>
                                             <label>Sim</label>
-                                            <input type="checkbox" checked={this.state.atheleteChecked === NO} onChange={e => this.onChangeAtheleteCheckbox(NO)}/>
+                                            <input type="checkbox" checked={this.state.atheleteChecked === NO} onChange={this.onChangeAtheleteCheckbox.bind(this, NO)}/>
                                             <label>Não</label>
                                         </div>
                                     </fieldset>
