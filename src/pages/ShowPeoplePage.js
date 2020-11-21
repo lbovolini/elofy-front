@@ -162,9 +162,9 @@ export default class ShowPeoplePage extends Component {
                                     <div className="box">
                                         <input type="checkbox" checked={this.state.lowWeightChecked} onChange={e => this.setState({ lowWeightChecked: !this.state.lowWeightChecked })}/>
                                         <label htmlFor="">Abaixo</label>
-                                        <input type="checkbox" checked={this.state.idealWeightChecked} onChange={e => this.setState({ idealWeight: !this.state.idealWeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.idealWeightChecked} onChange={e => this.setState({ idealWeightChecked: !this.state.idealWeightChecked })}/>
                                         <label htmlFor="">Ideal</label>
-                                        <input type="checkbox" checked={this.state.highWeightChecked} onChange={e => this.setState({ highWeight: !this.state.highWeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.highWeightChecked} onChange={e => this.setState({ highWeightChecked: !this.state.highWeightChecked })}/>
                                         <label htmlFor="">Acima</label>
                                     </div>
                                 </fieldset>
@@ -175,7 +175,7 @@ export default class ShowPeoplePage extends Component {
                                         <label htmlFor="">Baixa</label>
                                         <input type="checkbox" checked={this.state.medianHeightChecked} onChange={e => this.setState({ medianHeightChecked: !this.state.medianHeightChecked })}/>
                                         <label htmlFor="">Mediana</label>
-                                        <input type="checkbox" checked={this.state.tallHeightChecked} onChange={e => this.setState({ tallHeight: !this.state.tallHeightChecked })}/>
+                                        <input type="checkbox" checked={this.state.tallHeightChecked} onChange={e => this.setState({ tallHeightChecked: !this.state.tallHeightChecked })}/>
                                         <label htmlFor="">Alta</label>
                                     </div>
                                 </fieldset>
