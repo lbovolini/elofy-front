@@ -188,6 +188,15 @@ export default class ShowPeoplePage extends Component {
         this.setState({ filteredPeople: people })
     }
 
+    clearPathStroke = () => {
+        const iconPath = document.getElementsByClassName("icon-path")
+
+        for (const path of iconPath) {
+            path.style.stroke = "currentColor"
+            path.style.strokeWidth = 1
+        }
+    }
+
     orderByName = () => {
         const people = this.state.people.sort((a, b) => {
             if (this.state.orderAscName) {
@@ -196,6 +205,19 @@ export default class ShowPeoplePage extends Component {
                 return b.name.localeCompare(a.name)
             }
         })
+
+        this.clearPathStroke()
+
+        if (this.state.orderAscName) {
+            const nameAscIcon = document.getElementsByClassName("name-asc-icon-path")[0]
+            nameAscIcon.style.stroke = "#0A65FF"
+            nameAscIcon.style.strokeWidth = 3
+        } else {
+            const nameDescIcon = document.getElementsByClassName("name-desc-icon-path")[0]
+            nameDescIcon.style.stroke = "#0A65FF"
+            nameDescIcon.style.strokeWidth = 3
+        }
+
         this.setState({ orderAscName: !this.state.orderAscName })
         this.setState({ people: people })
     }
@@ -208,6 +230,19 @@ export default class ShowPeoplePage extends Component {
                 return b.height - a.height
             }
         })
+
+        this.clearPathStroke()
+
+        if (this.state.orderAscHeight) {
+            const heightAscIcon = document.getElementsByClassName("height-asc-icon-path")[0]
+            heightAscIcon.style.stroke = "#0A65FF"
+            heightAscIcon.style.strokeWidth = 3
+        } else {
+            const heightDescIcon = document.getElementsByClassName("height-desc-icon-path")[0]
+            heightDescIcon.style.stroke = "#0A65FF"
+            heightDescIcon.style.strokeWidth = 3
+        }
+
         this.setState({ orderAscHeight: !this.state.orderAscHeight })
         this.setState({ people: people })
     }
@@ -220,6 +255,19 @@ export default class ShowPeoplePage extends Component {
                 return b.weight - a.weight
             }
         })
+
+        this.clearPathStroke()
+
+        if (this.state.orderAscWeight) {
+            const weightAscIcon = document.getElementsByClassName("weight-asc-icon-path")[0]
+            weightAscIcon.style.stroke = "#0A65FF"
+            weightAscIcon.style.strokeWidth = 3
+        } else {
+            const weightDescIcon = document.getElementsByClassName("weight-desc-icon-path")[0]
+            weightDescIcon.style.stroke = "#0A65FF"
+            weightDescIcon.style.strokeWidth = 3
+        }
+
         this.setState({ orderAscWeight: !this.state.orderAscWeight })
         this.setState({ people: people })
     }
@@ -311,20 +359,34 @@ export default class ShowPeoplePage extends Component {
                             <th className="person-name-header" onClick={this.orderByName}>
                                 <div className="person-header">
                                     NOME
-                                    <div className="order-icon">
-                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-expand" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
-                                        </svg>   
+                                    <div className="order-icon-group">
+                                        <div className="order-icon">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path className="name-desc-icon-path icon-path" stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                            </svg>
+                                        </div>
+                                        <div className="order-icon">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path className="name-asc-icon-path icon-path" stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </div>                      
                                     </div>
                                 </div>
                             </th>
                             <th className="person-height-header" onClick={this.orderByHeight}>
                                 <div className="person-header header-right">
                                     ALTURA (m)
-                                    <div className="order-icon">
-                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-expand" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
-                                        </svg>   
+                                    <div className="order-icon-group">
+                                        <div className="order-icon">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path className="height-desc-icon-path icon-path" stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                            </svg>
+                                        </div>
+                                        <div className="order-icon">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path className="height-asc-icon-path icon-path" stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </div>                      
                                     </div>
                                 </div>
                             </th>
@@ -332,10 +394,17 @@ export default class ShowPeoplePage extends Component {
                             <th className="person-weight-header" onClick={this.orderByWeight}>
                                 <div className="person-header header-right">
                                     PESO (kg)
-                                    <div className="order-icon">
-                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-expand" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
-                                        </svg>   
+                                    <div className="order-icon-group">
+                                        <div className="order-icon">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path className="weight-desc-icon-path icon-path" stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                            </svg>
+                                        </div>
+                                        <div className="order-icon">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path className="weight-asc-icon-path icon-path" stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </div>                      
                                     </div>
                                 </div>
                             </th>

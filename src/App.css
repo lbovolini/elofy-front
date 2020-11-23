@@ -280,12 +280,28 @@ span svg {
   font-weight: bold;
 }
 
+.order-icon-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .order-icon {
   margin-left: 1rem;
   display: flex;
   align-items: center;
+  max-height: 0.6rem;
 }
 
 .ordered-data {
   margin-right: 2rem;
+}
+
+.bi-chevron-up {
+  max-height: 0.6rem;
+}
+
+.bi-chevron-down {
+  max-height: 0.6rem;
 }
