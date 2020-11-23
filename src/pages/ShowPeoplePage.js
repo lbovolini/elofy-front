@@ -20,6 +20,7 @@ export default class ShowPeoplePage extends Component {
 
         this.state = {
             people: [],
+            filteredPeople: [],
             allPeople: [],
             lowWeightChecked: true,
             idealWeightChecked: true,
@@ -36,6 +37,7 @@ export default class ShowPeoplePage extends Component {
         try {
             const { data } = await PeopleService.findAll()
             this.setState({ people: data })
+            this.setState({ filteredPeople: data })
             this.setState({ allPeople: data })
         } catch (e) {
             console.log(e)
@@ -119,6 +121,19 @@ export default class ShowPeoplePage extends Component {
         this.setState({ tallHeightChecked: !this.state.tallHeightChecked })
     }
 
+    onChangeSearchInput = (e) => {
+        const name = e.target.value
+
+        if (!name || name === '') {
+            this.setState({ people: this.state.filteredPeople })
+            return
+        }
+
+        const people = this.state.people.filter(person => person.name.toLowerCase().match(name.toLowerCase()))
+
+        this.setState({ people: people })
+    }
+
     onFilter = () => {
         let people = this.state.allPeople
 
@@ -167,6 +182,7 @@ export default class ShowPeoplePage extends Component {
         }
 
         this.setState({ people: people })
+        this.setState({ filteredPeople: people })
     }
 
     render() {
@@ -239,7 +255,7 @@ export default class ShowPeoplePage extends Component {
                             <path  fillRule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                             </svg>
                         </i> 
-                        <input className="search-people-input" placeholder="Search"/>
+                        <input className="search-people-input" placeholder="Search" onChange={this.onChangeSearchInput}/>
                     </div>
                     <button className="add-customer-button">
                         <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" className="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -254,9 +270,9 @@ export default class ShowPeoplePage extends Component {
                         <tr>
                             <th className="checkbox-header"><input type="checkbox"/></th>
                             <th className="person-name-header">NOME</th>
-                            <th className="person-height-header">ALTURA</th>
+                            <th className="person-height-header">ALTURA (m)</th>
                             <th>LACTOSE</th>
-                            <th className="person-weight-header">PESO</th>
+                            <th className="person-weight-header">PESO (kg)</th>
                             <th>ATLETA</th>
                             <th className="person-actions-header">
                                 <svg width="2em" height="2em" viewBox="0 0 16 16" className="bi bi-three-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
