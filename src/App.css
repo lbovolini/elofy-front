@@ -113,6 +113,17 @@ input[type=radio] {
   margin: 0;
 }
 
+.person-header {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 1rem 0;
+  cursor: pointer;
+}
+
+.header-right {
+  justify-content: flex-end;
+}
+
 .person-name-header {
   text-align: left;
 }
@@ -267,4 +278,14 @@ span svg {
   background-color: #0A65FF;
   color: #FFFFFF;
   font-weight: bold;
+}
+
+.order-icon {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.ordered-data {
+  margin-right: 2rem;
 }

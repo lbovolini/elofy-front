@@ -29,7 +29,10 @@ export default class ShowPeoplePage extends Component {
             medianHeightChecked: true,
             tallHeightChecked: true,
             lactoseChecked: ALL,
-            atheleteChecked: ALL
+            atheleteChecked: ALL,
+            orderAscName: true,
+            orderAscHeight: true,
+            orderAscWeight: true
         }
     }
 
@@ -185,6 +188,42 @@ export default class ShowPeoplePage extends Component {
         this.setState({ filteredPeople: people })
     }
 
+    orderByName = () => {
+        const people = this.state.people.sort((a, b) => {
+            if (this.state.orderAscName) {
+                return a.name.localeCompare(b.name)
+            } else {
+                return b.name.localeCompare(a.name)
+            }
+        })
+        this.setState({ orderAscName: !this.state.orderAscName })
+        this.setState({ people: people })
+    }
+
+    orderByHeight = () => {
+        const people = this.state.people.sort((a, b) => {
+            if (this.state.orderAscHeight) {
+                return a.height - b.height
+            } else {
+                return b.height - a.height
+            }
+        })
+        this.setState({ orderAscHeight: !this.state.orderAscHeight })
+        this.setState({ people: people })
+    }
+
+    orderByWeight = () => {
+        const people = this.state.people.sort((a, b) => {
+            if (this.state.orderAscWeight) {
+                return a.weight - b.weight
+            } else {
+                return b.weight - a.weight
+            }
+        })
+        this.setState({ orderAscWeight: !this.state.orderAscWeight })
+        this.setState({ people: people })
+    }
+
     render() {
         return (
             <div>
@@ -269,10 +308,37 @@ export default class ShowPeoplePage extends Component {
                     <thead>
                         <tr>
                             <th className="checkbox-header"><input type="checkbox"/></th>
-                            <th className="person-name-header">NOME</th>
-                            <th className="person-height-header">ALTURA (m)</th>
+                            <th className="person-name-header" onClick={this.orderByName}>
+                                <div className="person-header">
+                                    NOME
+                                    <div className="order-icon">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-expand" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                                        </svg>   
+                                    </div>
+                                </div>
+                            </th>
+                            <th className="person-height-header" onClick={this.orderByHeight}>
+                                <div className="person-header header-right">
+                                    ALTURA (m)
+                                    <div className="order-icon">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-expand" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                                        </svg>   
+                                    </div>
+                                </div>
+                            </th>
                             <th>LACTOSE</th>
-                            <th className="person-weight-header">PESO (kg)</th>
+                            <th className="person-weight-header" onClick={this.orderByWeight}>
+                                <div className="person-header header-right">
+                                    PESO (kg)
+                                    <div className="order-icon">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-expand" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke="currentColor" strokeWidth="1" fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                                        </svg>   
+                                    </div>
+                                </div>
+                            </th>
                             <th>ATLETA</th>
                             <th className="person-actions-header">
                                 <svg width="2em" height="2em" viewBox="0 0 16 16" className="bi bi-three-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -286,11 +352,19 @@ export default class ShowPeoplePage extends Component {
                             <tr>
                                 <td><input type="checkbox"/></td>
                                 <td className="person-name">{person.name}</td>
-                                <td className="person-height">{Number(person.height).toFixed(2)}</td>
+                                <td className="person-height">
+                                    <div className="ordered-data">
+                                        {Number(person.height).toFixed(2)}
+                                    </div>
+                                </td>
                                 <td className="person-lactose">
                                     {person.lactose ? <div className="status positive-status">SIM</div> : <div className="status negative-status">NÃO</div>}
                                 </td>
-                                <td className="person-weight">{Number(person.weight).toFixed(2)}</td>
+                                <td className="person-weight">
+                                    <div className="ordered-data">
+                                        {Number(person.weight).toFixed(2)}
+                                    </div>
+                                </td>
                                 <td className="person-athlete">
                                     {person.athlete? <div className="status positive-status">SIM</div> : <div className="status negative-status">NÃO</div>}
                                 </td>
